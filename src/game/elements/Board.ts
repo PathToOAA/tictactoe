@@ -14,5 +14,12 @@ export default class Board {
         const bX = scene.scale.width / 2;
         const bY = scene.scale.height / 2;
         factory.rectangle(bX, bY, 360, 360, 0x9D9D9D);
+
+        // 가로 세로 분리선 그리기
+        factory.rectangle(bX, bY - 60, 360, 4, 0x484848);
+        factory.rectangle(bX, bY + 60, 360, 4, 0x484848);
+
+        factory.rectangle(bX - 60, bY, 4, 360, 0x484848);
+        factory.rectangle(bX + 60, bY, 4, 360, 0x484848);
     }
 }
