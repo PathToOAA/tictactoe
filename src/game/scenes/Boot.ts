@@ -2,8 +2,8 @@ import Phaser from 'phaser';
 
 export class Boot extends Phaser.Scene {
     constructor() {
-        console.log("[Boot] 진입");
-        super("Boot");
+        console.log('[Boot] 진입');
+        super('Boot');
     }
 
     preload() {
@@ -14,6 +14,6 @@ export class Boot extends Phaser.Scene {
     }
 
     create() {
-        this.scene.start("Intro");
+        this.scene.start('Intro');
     }
 }

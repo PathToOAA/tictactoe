@@ -1,22 +1,16 @@
 import { Scene } from 'phaser';
 import Board from '../elements/Board';
 
-export class Game extends Scene
-{
+export class Game extends Scene {
     board: Board;
 
-    constructor ()
-    {
+    constructor() {
         super('Game');
     }
 
-    preload ()
-    {
+    preload() {}
 
-    }
-
-    create ()
-    {
+    create() {
         this.board = new Board(this);
     }
 }
