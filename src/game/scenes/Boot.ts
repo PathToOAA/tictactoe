@@ -9,8 +9,8 @@ export class Boot extends Phaser.Scene {
     preload() {
         this.load.setPath('assets');
 
-        this.load.image('circle', 'cicle.png');
-        this.load.image('ex', 'ex.png');
+        this.load.image('oMarker', 'circle.png');
+        this.load.image('xMarker', 'ex.png');
     }
 
     create() {

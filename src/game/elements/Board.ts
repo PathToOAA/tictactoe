@@ -14,7 +14,6 @@ export default class Board {
         // 렌더링
         this.createBoard(scene);
         console.log('[Board] createBoard 실행 완료');
-        this.createCells();
 
         // 데이터 모델
     }
@@ -33,10 +32,13 @@ export default class Board {
     }
 
     createCells() {
+        const cells: Cell[] = [];
         for (let idx = 0; idx < 9; idx++) {
             const cell = new Cell(this.scene, idx, this.boardX - 180, this.boardY - 180);
 
             // 데이터 모델에 cells 등록
+            cells[idx] = cell;
         }
+        return cells;
     }
 }
