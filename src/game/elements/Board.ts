@@ -1,5 +1,6 @@
 import Phaser from 'phaser';
 import Cell from './Cell';
+import Logger from '../../util/Logger';
 
 export default class Board {
     scene: Phaser.Scene;
@@ -13,7 +14,7 @@ export default class Board {
 
         // 렌더링
         this.createBoard(scene);
-        console.log('[Board] createBoard 실행 완료');
+        Logger.say('Board', 'createBoard 실행 완료');
 
         // 데이터 모델
     }

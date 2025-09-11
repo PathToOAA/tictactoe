@@ -1,8 +1,9 @@
 import Phaser from 'phaser';
+import Logger from '../../util/Logger';
 
 export class Boot extends Phaser.Scene {
     constructor() {
-        console.log('[Boot] 진입');
+        Logger.say('Boot', '진입');
         super('Boot');
     }
 

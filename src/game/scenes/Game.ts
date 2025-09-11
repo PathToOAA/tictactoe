@@ -2,6 +2,7 @@ import { Scene } from 'phaser';
 import Board from '../elements/Board';
 import Cell from '../elements/Cell';
 import { Mark } from '../elements/Cell';
+import Logger from '../../util/Logger';
 
 type BoardState = [
     Mark | null,
@@ -52,14 +53,14 @@ export class Game extends Scene {
             // 게임 중단
             this.gameStop();
             // 승자 표시
-            console.log('Winner is X!');
+            Logger.say('Game.onCellClicked', 'Winner is X!');
         } else if (turnResult === 'O-WIN') {
             this.gameStop();
-            console.log('Winner is O!');
+            Logger.say('Game.onCellClicked', 'Winner is O!');
         } else if (turnResult === 'DRAW') {
             // 게임 중단
             this.gameStop();
-            console.log('Draw...');
+            Logger.say('Game.onCellClicked', 'Draw...');
         }
 
         // turn 넘기기
