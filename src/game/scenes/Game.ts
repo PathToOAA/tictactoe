@@ -32,7 +32,7 @@ export class Game extends Scene {
 
     create() {
         this.board = new Board(this);
-        this.cells = this.board.createCells();
+        this.cells = this.board.cells;
         this.player = 'X';
         this.marked = [null, null, null, null, null, null, null, null, null];
         this.turn = 1;

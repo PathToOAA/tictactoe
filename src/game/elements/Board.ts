@@ -5,6 +5,7 @@ export default class Board {
     scene: Phaser.Scene;
     boardX: number;
     boardY: number;
+    cells: Cell[];
 
     constructor(scene: Phaser.Scene) {
         this.scene = scene;
@@ -22,16 +23,10 @@ export default class Board {
         const factory = scene.add;
 
         factory.rectangle(this.boardX, this.boardY, 360, 360, 0x9d9d9d);
-
-        // 가로 세로 분리선 그리기
-        // factory.rectangle(this.boardX, this.boardY - 60, 360, 4, 0x484848);
-        // factory.rectangle(this.boardX, this.boardY + 60, 360, 4, 0x484848);
-
-        // factory.rectangle(this.boardX - 60, this.boardY, 4, 360, 0x484848);
-        // factory.rectangle(this.boardX + 60, this.boardY, 4, 360, 0x484848);
+        this.cells = this.createCells();
     }
 
-    createCells() {
+    createCells(): Cell[] {
         const cells: Cell[] = [];
         for (let idx = 0; idx < 9; idx++) {
             const cell = new Cell(this.scene, idx, this.boardX - 180, this.boardY - 180);
