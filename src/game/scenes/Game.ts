@@ -62,6 +62,10 @@ export class Game extends Scene {
             console.log('Draw...');
         }
 
+        if (turnResult !== 'GO') {
+            this.showResult(turnResult);
+        }
+
         // turn 넘기기
         this.turn = this.turn + 1;
         if (this.player === 'X') {
@@ -104,5 +108,45 @@ export class Game extends Scene {
         this.cells.map((c) => {
             c.lock();
         });
+    }
+
+    private showResult(message: string) {
+        const { width, height } = this.scale;
+
+        // 반투명 배경 (선택)
+        const overlay = this.add.rectangle(width / 2, height / 2, width, height, 0x000000, 0.5);
+
+        // 결과 텍스트
+        const resultText = this.add
+            .text(width / 2, height / 2 - 50, message, {
+                fontSize: '32px',
+                color: '#ffffff',
+            })
+            .setOrigin(0.5);
+
+        // 재시작 버튼
+        const restartText = this.add
+            .text(width / 2, height / 2 + 30, 'Restart', {
+                fontSize: '28px',
+                backgroundColor: '#222222',
+                padding: { left: 10, right: 10, top: 5, bottom: 5 },
+                color: '#ffffff',
+            })
+            .setOrigin(0.5)
+            .setInteractive();
+
+        restartText.on('pointerover', () => {
+            restartText.setStyle({ backgroundColor: '#444444' });
+        });
+        restartText.on('pointerout', () => {
+            restartText.setStyle({ backgroundColor: '#222222' });
+        });
+
+        restartText.on('pointerdown', () => {
+            // 현재 Scene을 재시작
+            this.scene.restart();
+        });
+
+        // 오버레이, 텍스트를 그룹처럼 묶어서 관리하고 싶다면 Container 사용 가능
     }
 }
