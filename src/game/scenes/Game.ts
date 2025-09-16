@@ -36,6 +36,9 @@ export class Game extends Scene {
         this.player = 'X';
         this.marked = [null, null, null, null, null, null, null, null, null];
         this.turn = 1;
+
+        // 남아 있는 이벤트 제거 후 재설정
+        this.events.off('cell:clicked', this.onCellClicked, this);
         this.events.on('cell:clicked', this.onCellClicked, this);
     }
 
@@ -145,8 +148,7 @@ export class Game extends Scene {
         restartText.on('pointerdown', () => {
             // 현재 Scene을 재시작
             this.scene.restart();
+            // 게임 상태 초기화 로직 필요
         });
-
-        // 오버레이, 텍스트를 그룹처럼 묶어서 관리하고 싶다면 Container 사용 가능
     }
 }
