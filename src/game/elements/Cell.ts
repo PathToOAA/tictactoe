@@ -17,6 +17,7 @@ export default class Cell {
         this.scene = scene;
         this.board_x0 = x_start;
         this.board_y0 = y_start;
+        this.locked = false;
         this.createCell(scene);
     }
 
@@ -33,13 +34,10 @@ export default class Cell {
             .rectangle(this.board_x0 + this.x, this.board_y0 + this.y, 116, 116, 0x333333, 1)
             .setInteractive();
 
-        // 마우스 오버 이벤트
         this.cell.on('pointerdown', () => {
-            // 'cell:clicked' 호출과 함께 id 전달
             this.scene.events.emit('cell:clicked', this.id);
         });
 
-        // 미리 X/O 이미지를 만들고 숨겨둠
         this.imgX = this.scene.add.image(this.cell.x, this.cell.y, 'xMarker').setVisible(false);
         this.imgO = this.scene.add.image(this.cell.x, this.cell.y, 'oMarker').setVisible(false);
         this.imgX.setDisplaySize(116, 116);
@@ -58,5 +56,12 @@ export default class Cell {
     lock() {
         this.locked = true;
         this.cell.disableInteractive();
+    }
+
+    reset() {
+        this.locked = false;
+        this.cell.setInteractive();
+        this.imgX?.setVisible(false);
+        this.imgO?.setVisible(false);
     }
 }
