@@ -1,15 +1,15 @@
 export type Mark = 'X' | 'O';
 
 export default class Cell {
-    id: number; // 식별자
-    scene: Phaser.Scene; // Game Scene
-    board_x0: number; // Board left-top 좌표
+    id: number;
+    scene: Phaser.Scene;
+    board_x0: number;
     board_y0: number;
-    cell: Phaser.GameObjects.Rectangle; // 인터랙션 메인 요소
-    locked: Boolean; // 상호 작용 가능 여부
-    x: number; // Board 내 offset
+    cell: Phaser.GameObjects.Rectangle;
+    locked: boolean;
+    x: number;
     y: number;
-    imgO?: Phaser.GameObjects.Image; // O X 이미지
+    imgO?: Phaser.GameObjects.Image;
     imgX?: Phaser.GameObjects.Image;
 
     constructor(scene: Phaser.Scene, id: number, x_start: number, y_start: number) {
@@ -21,7 +21,7 @@ export default class Cell {
         this.createCell(scene);
     }
 
-    createCell(scene: Phaser.Scene) {
+    private createCell(scene: Phaser.Scene) {
         const factory = scene.add;
 
         const x_idx = this.id % 3;
@@ -50,7 +50,8 @@ export default class Cell {
         } else {
             this.imgO?.setVisible(true);
         }
-        this.lock(); // 한번 선택이 되면 더 이상 선택 불가능
+
+        this.lock();
     }
 
     lock() {
@@ -63,5 +64,14 @@ export default class Cell {
         this.cell.setInteractive();
         this.imgX?.setVisible(false);
         this.imgO?.setVisible(false);
+    }
+
+    setInputActive(active: boolean) {
+        if (active && !this.locked) {
+            this.cell.setInteractive();
+            return;
+        }
+
+        this.cell.disableInteractive();
     }
 }
